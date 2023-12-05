@@ -1,0 +1,40 @@
+<%- include("header.ejs")%>
+<!--  -->
+<%- include("nav.ejs")%>
+<!--  -->
+<h1>👋 <%= admin.username %></h1>
+
+<a href="/createexpense">Add New Expense</a>
+<a href="/update">Update User</a>
+<a href="/delete">Delete User</a>
+
+
+<% expenses.forEach(function(expense) { %>
+    <a href="/updateexpense/<%= expense._id %>">Update Expense</a>
+    <form action="/delete-expense/<%= expense._id %>" method="POST">
+        <button type="submit" >Delete Expense's</button>
+    </form>
+    <p>Amount: <%= expense.amount %></p>
+    <p>Remark: <%= expense.remark %></p>
+    <p>Category: <%= expense.category %></p>
+    <p>Payment Mode: <%= expense.paymentmode %></p>
+<% }) %>
+
+<hr />
+<form action="/filter">
+    <select name="key" id="">
+        <option value="amount">Amount</option>
+        <option value="remark">Remark</option>
+        <option value="category">Category</option>
+        <option value="paymentmode">Payment Mode</option>
+        <option value="Date">Date</option>
+    </select>
+    <input type="text" name="value" placeholder="enter search term" />
+    <button>Filter</button>
+</form>
+<h1>Sum: <%= expenses.reduce((ac,cv) => ac+cv.amount, 0)%></h1>
+
+<!-- <%= JSON.stringify(expenses)%>  -->
+<%- include("footer.ejs")%>
+
+

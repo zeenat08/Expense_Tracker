@@ -1,0 +1,24 @@
+
+<%- include("header.ejs")%>
+<!--  -->
+<%- include("nav.ejs")%>
+<!--  -->
+<h1>Update Expense</h1>
+
+<form action="/updateexpense/<%= expense._id %>" method="post">
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" name="amount" value="<%= expense.amount %>" required>
+
+    <label for="remark">Remark:</label>
+    <input type="text" id="remark" name="remark" value="<%= expense.remark %>" required>
+
+    <!-- Add other fields as needed -->
+
+    <button type="submit">Update</button>
+</form>
+
+<!-- Add a link to go back to the profile page -->
+<a href="/profile">Back to Profile</a>
+
+<!--  -->
+<%- include("footer.ejs")%>
